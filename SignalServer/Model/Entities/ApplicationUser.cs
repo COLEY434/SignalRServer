@@ -8,5 +8,6 @@ namespace SignalServer.Model.Entities
 {
     public class ApplicationUser : IdentityUser
     {
+        public DateTime CreationDate { get; set; }
     }
 }
