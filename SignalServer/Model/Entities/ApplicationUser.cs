@@ -9,5 +9,7 @@ namespace SignalServer.Model.Entities
     public class ApplicationUser : IdentityUser
     {
         public DateTime CreationDate { get; set; }
+
+        public ICollection<RoomMembers> UserRooms { get; set; }
     }
 }
