@@ -12,7 +12,7 @@ namespace SignalServer.Hubs
     {
         public async Task skfjks()
         {
-            Clients.Users()
+            Groups.
         }
 
     }
