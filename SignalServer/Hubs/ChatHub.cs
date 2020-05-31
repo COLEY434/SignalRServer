@@ -10,9 +10,9 @@ namespace SignalServer.Hubs
     [Authorize]
     public class ChatHub : Hub
     {
-        public async Task skfjks()
+        public string getConnectionId()
         {
-            Groups.
+            return Context.ConnectionId;
         }
 
     }
