@@ -1,20 +1,21 @@
-﻿using System;
+﻿using SignalServer.Model.Entities.enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace SignalServer.Model.Entities
 {
-    public class RoomMembers
+    public class ChatUser
     {
         public string UserId { get; set; }
 
         public ApplicationUser User { get; set; }
 
-        public int RoomId { get; set; }
+        public int ChatId { get; set; }
 
-        public ConversationRoom Room { get; set; }
+        public Chat Chat { get; set; }
 
-        public Enum MemberType { get; set; }
+        public UserRole Role { get; set; }
     }
 }

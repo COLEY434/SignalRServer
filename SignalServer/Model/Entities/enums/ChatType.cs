@@ -5,9 +5,10 @@ using System.Threading.Tasks;
 
 namespace SignalServer.Model.Entities
 {
-    public enum MemberType
+    public enum ChatType
     {
-        Admin,
-        Member
+        Room,
+
+        Private
     }
 }

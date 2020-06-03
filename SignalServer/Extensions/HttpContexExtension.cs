@@ -11,7 +11,12 @@ namespace SignalServer.Extensions
     {
         public static string GetUserId(this HttpContext httpContext)
         {
-            return httpContext.User.FindFirst(x => x.Type == ClaimTypes.NameIdentifier).Value;
+            return httpContext.User.FindFirst(x => x.Type == "id").Value;
+        }
+
+        public static string GetUsername(this HttpContext httpContext)
+        {
+            return httpContext.User.FindFirst(x => x.Type == "sub").Value;
         }
     }
 }

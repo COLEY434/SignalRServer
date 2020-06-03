@@ -7,14 +7,11 @@ using System.Threading.Tasks;
 
 namespace SignalServer.Model.Entities.EntityConfigurations
 {
-    //public class RoomMembersConfigurations : IEntityTypeConfiguration<RoomMembers>
+    //public class PrivateChatUsersConfigurations : IEntityTypeConfiguration<PrivateChatUsers>
     //{
-    //    public void Configure(EntityTypeBuilder<RoomMembers> builder)
+    //    public void Configure(EntityTypeBuilder<PrivateChatUsers> builder)
     //    {
-    //        builder.HasKey(c => new { c.RoomId, c.UserId });
-            
-                 
-
+    //        builder.HasKey(c => new { c.PrivateChatId, c.UserId });
     //    }
     //}
 }

@@ -36,7 +36,7 @@ namespace SignalServer
             services.AddCors(options => {
                 options.AddPolicy("SignalRPolicy", builder =>
                 {
-                    builder.WithOrigins("https://localhost:8080")
+                    builder.WithOrigins("http://localhost:8000")
                            .AllowAnyHeader()
                            .AllowAnyMethod()
                            .AllowCredentials();

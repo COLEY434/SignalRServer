@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SignalServer.Model;
 
 namespace SignalServer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200601083649_initMigration")]
+    partial class initMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -225,8 +227,11 @@ namespace SignalServer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("created_at")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -251,7 +256,7 @@ namespace SignalServer.Migrations
                     b.ToTable("ChatUsers");
                 });
 
-            modelBuilder.Entity("SignalServer.Model.Entities.message", b =>
+            modelBuilder.Entity("SignalServer.Model.Entities.Message", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -343,7 +348,7 @@ namespace SignalServer.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SignalServer.Model.Entities.message", b =>
+            modelBuilder.Entity("SignalServer.Model.Entities.Message", b =>
                 {
                     b.HasOne("SignalServer.Model.Entities.Chat", "Chat")
                         .WithMany("Messages")

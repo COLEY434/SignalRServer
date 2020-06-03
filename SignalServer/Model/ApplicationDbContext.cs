@@ -16,20 +16,26 @@ namespace SignalServer.Model
 
         }
 
-        public DbSet<ConversationRoom> ConversationRooms { get; set; }
-        public DbSet<PrivateChats> PrivateChats { get; set; }
-        public DbSet<PrivateMessage> PrivateMessages { get; set; }
-        public DbSet<RoomMembers> RoomMembers { get; set; }
-        public DbSet<RoomMessages> RoomMessages { get; set; }
+        public DbSet<Chat> Chats { get; set; }
+        public DbSet<message> Messages { get; set; }
+
+        public DbSet<ChatUser> ChatUsers { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 
-            builder.ApplyConfiguration(new ConversationRoomConfiguration());
-            builder.ApplyConfiguration(new PrivateChatsConfiguration());
-            builder.ApplyConfiguration(new PrivateMessageConfiguration());
-            builder.ApplyConfiguration(new RoomMembersConfigurations());
-            builder.ApplyConfiguration(new RoomMessagesConfigurations());
+            builder.Entity<ChatUser>()
+                    .HasKey(chatuser => new { chatuser.ChatId, chatuser.UserId });
+
+
+
+
+            //builder.ApplyConfiguration(new PrivateChatUsersConfigurations());
+            //builder.ApplyConfiguration(new ConversationRoomConfiguration());
+            //builder.ApplyConfiguration(new PrivateChatsConfiguration());
+            //builder.ApplyConfiguration(new PrivateMessageConfiguration());
+            //builder.ApplyConfiguration(new RoomMembersConfigurations());
+            //builder.ApplyConfiguration(new RoomMessagesConfigurations());
 
 
         }

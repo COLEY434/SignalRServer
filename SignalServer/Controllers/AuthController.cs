@@ -51,7 +51,7 @@ namespace SignalServer.Controllers
 
                 if (Result.Succeeded)
                 {
-                    var JwtToken = GenerateToken(NewUser);
+                    var JwtToken = GenerateToken(NewUser.Email, NewUser.Id);
                     return Ok(new RegistrationResponseModel 
                     { 
                         UserId = NewUser.Id,
@@ -85,14 +85,8 @@ namespace SignalServer.Controllers
                 return BadRequest("Incorrect Password");
             }
 
-            var AppUser = new ApplicationUser
-            {
-                Email = loginModel.Email,
-                UserName = loginModel.Email,
-                CreationDate = DateTime.Now
-            };
 
-            var JwtToken = GenerateToken(AppUser);
+            var JwtToken = GenerateToken(user.Email, user.Id);
             return Ok(new RegistrationResponseModel
             {
                 UserId = user.Id,
@@ -100,7 +94,7 @@ namespace SignalServer.Controllers
             });
         }
 
-        private string GenerateToken(ApplicationUser user)
+        private string GenerateToken(string email, string userId)
         {
             var key = Encoding.ASCII.GetBytes(_configuration["JwtSettings:SecretKey"]);
 
@@ -108,10 +102,10 @@ namespace SignalServer.Controllers
             {
                 Subject = new ClaimsIdentity(new Claim[]
               {
-                  new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-                  new Claim("id", user.Id),
+                  new Claim(JwtRegisteredClaimNames.Sub, email),
+                  new Claim("id", userId),
                   new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                  new Claim(ClaimTypes.NameIdentifier, user.Id),
+            
                  
               }),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),

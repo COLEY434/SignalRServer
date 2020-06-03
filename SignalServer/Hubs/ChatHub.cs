@@ -12,8 +12,17 @@ namespace SignalServer.Hubs
     {
         public string getConnectionId()
         {
+            
             return Context.ConnectionId;
         }
+
+        public override async Task OnConnectedAsync()
+        {
+            await Clients.Caller.SendAsync("retrieveToken", Context.ConnectionId);
+            await base.OnConnectedAsync();
+        }
+
+      
 
     }
 }
